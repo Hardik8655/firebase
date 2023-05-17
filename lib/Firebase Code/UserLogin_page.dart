@@ -4,12 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_ui/Firebase%20Code/FargotPassword.dart';
+import 'package:simple_ui/Firebase%20Code/Firebas_CRUD.dart';
 import 'package:simple_ui/Firebase%20Code/Singin_page.dart';
-import 'package:simple_ui/SPdetailfire.dart';
-import 'package:simple_ui/coffee_app_ui/coffee.dart';
-
-import '../SharePrefrenceData.dart';
-import '../SharedPreference.dart';
 
 // Email and Password Sing in code
 
@@ -175,7 +171,7 @@ class _FirebasAuthenticationState extends State<FirebasAuthentication> {
           'Creationtime', user.user!.metadata.creationTime.toString());
       // print(user.user!.uid);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => coffee_1()));
+          context, MaterialPageRoute(builder: (context) => FirebaseExmple()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'User-not-found') {
         const msg = SnackBar(content: Text("No user found for that Email"));

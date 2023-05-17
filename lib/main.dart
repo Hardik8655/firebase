@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_ui/Firebase%20Code/Firebas_CRUD.dart';
+import 'package:simple_ui/Firebase%20Code/Singin_page.dart';
 import 'package:simple_ui/Firebase%20Code/notificationclass.dart';
 import 'package:simple_ui/SecondPage.dart';
 import 'package:simple_ui/coffee_app_ui/coffee.dart';
@@ -46,7 +48,9 @@ class _Simple_UiState extends State<Simple_Ui> {
           // primarySwatch: Colors.orange // for coffee UI
           // primarySwatch: Colors.blue,
         ),
-        home: emailvalue.isEmpty ? FirebasAuthentication() : coffee_1(),
+        home: FirebasAuthentication()
+        // FirebaseExmple(), Firebase CRUD opration
+        // emailvalue.isEmpty ? FirebasAuthentication() : coffee_1(),
       );
     });
   }

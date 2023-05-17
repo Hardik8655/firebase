@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_ui/Firebase%20Code/FirebaseEdit.dart';
+
+import 'UserLogin_page.dart';
 
 class FirebaseExmple extends StatefulWidget {
   const FirebaseExmple({Key? key}) : super(key: key);
@@ -13,6 +16,7 @@ class _FirebaseExmpleState extends State<FirebaseExmple> {
   TextEditingController username = TextEditingController();
   TextEditingController userage = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  FirebasAuthentication firebasAuth = const FirebasAuthentication();
 
 // code for CRED opration to firebase
 
@@ -64,21 +68,53 @@ class _FirebaseExmpleState extends State<FirebaseExmple> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          UserData(name: username.text, age: userage.text);
-                          userage.clear();
-                          username.clear();
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.add,
-                        size: 35,
+                  InkWell(
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        UserData(name: username.text, age: userage.text);
+                        userage.clear();
+                        username.clear();
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 45,
+                      width: 150,
+                      child: const Center(
+                          child: Text(
+                        "Save",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       )),
-                  // IconButton(onPressed: () {}, icon: const Icon(Icons.update)),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      UserLogout();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FirebasAuthentication()));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 45,
+                      width: 150,
+                      child: const Center(
+                          child: Text(
+                        "Logout",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      )),
+                    ),
+                  ),
                 ],
               ),
+              const SizedBox(height: 5),
               Expanded(
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance
@@ -100,7 +136,7 @@ class _FirebaseExmpleState extends State<FirebaseExmple> {
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: const [
                                       BoxShadow(
-                                        blurRadius: 3,
+                                        blurRadius: 2,
                                       )
                                     ]),
                                 child: Column(
@@ -170,6 +206,16 @@ class _FirebaseExmpleState extends State<FirebaseExmple> {
             ],
           ),
         ));
+  }
+
+  Future UserLogout() async {
+    await FirebaseAuth.instance.signOut();
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
+    //prefs.clear();
+    const msg3 = SnackBar(content: Text('Logout Successfully'));
+    ScaffoldMessenger.of(context).showSnackBar(msg3);
+
+    // Write code here fore navigate to login page
   }
 
   Future UserData({required String name, required String age}) async {
