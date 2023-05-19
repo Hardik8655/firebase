@@ -150,3 +150,84 @@ class _SinginState extends State<Singin> {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
+
+//import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+//
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(MaterialApp(
+//     home: Home(),
+//     debugShowCheckedModeBanner: false,
+//   ));
+// }
+//
+// class Home extends StatefulWidget {
+//   const Home({Key? key}) : super(key: key);
+//
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
+//
+// class _HomeState extends State<Home> {
+//   TextEditingController t1 = TextEditingController();
+//   TextEditingController t2 = TextEditingController();
+//   String verify = "";
+//   String verificationId1 = "";
+//   FirebaseAuth auth = FirebaseAuth.instance;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("OTP"),
+//       ),
+//       body: Column(
+//         children: [
+//           TextField(
+//             controller: t1,
+//             decoration: InputDecoration(hintText: "Enter Number"),
+//           ),
+//           ElevatedButton(
+//               onPressed: () async {
+//                 await auth.verifyPhoneNumber(
+//                   phoneNumber: '+91${t1.text}',
+//                   verificationCompleted:
+//                       (PhoneAuthCredential credential) async {
+//                     await auth.signInWithCredential(credential);
+//                   },
+//                   verificationFailed: (FirebaseAuthException e) {
+//                     if (e.code == 'invalid-phone-number') {
+//                       print('The provided phone number is not valid.');
+//                     }
+//                   },
+//                   codeSent: (String verificationId, int? resendToken) {
+//                     verificationId1 = verificationId;
+//                     setState(() {});
+//                   },
+//                   codeAutoRetrievalTimeout: (String verificationId) {},
+//                 );
+//               },
+//               child: Text("Send")),
+//           TextField(
+//             controller: t2,
+//             decoration: InputDecoration(hintText: "Enter Otp"),
+//           ),
+//           ElevatedButton(
+//               onPressed: () async {
+//                 String smsCode = "${t2.text}";
+//
+//                 PhoneAuthCredential credential = PhoneAuthProvider.credential(
+//                     verificationId: verificationId1, smsCode: smsCode);
+//
+//                 await auth.signInWithCredential(credential);
+//               },
+//               child: Text("Submit")),
+//         ],
+//       ),
+//     );
+//   }
+// }

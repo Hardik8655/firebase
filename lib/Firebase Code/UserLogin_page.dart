@@ -34,7 +34,7 @@ class _FirebasAuthenticationState extends State<FirebasAuthentication> {
   late String uid;
   late String Creationtime;
 
-  // FirebasAuthentication firebasAuth = const FirebasAuthentication();
+   FirebasAuthentication firebasAuth = const FirebasAuthentication();
   final formKey = GlobalKey<FormState>();
 
   @override

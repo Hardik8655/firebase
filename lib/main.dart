@@ -41,14 +41,14 @@ class _Simple_UiState extends State<Simple_Ui> {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "App_Ui",
-        theme: ThemeData(
-          // brightness: Brightness.dark, // for coffee UI
-          // primarySwatch: Colors.orange // for coffee UI
-          // primarySwatch: Colors.blue,
-        ),
-        home: FirebasAuthentication()
+          debugShowCheckedModeBanner: false,
+          title: "App_Ui",
+          theme: ThemeData(
+            // brightness: Brightness.dark, // for coffee UI
+            // primarySwatch: Colors.orange // for coffee UI
+            // primarySwatch: Colors.blue,
+          ),
+          home: FirebasAuthentication()
         // FirebaseExmple(), Firebase CRUD opration
         // emailvalue.isEmpty ? FirebasAuthentication() : coffee_1(),
       );
